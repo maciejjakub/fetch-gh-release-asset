@@ -28,7 +28,7 @@ AUTH_HEADER="Authorization: token $TOKEN"
 API_URL="https://api.github.com/repos/$REPO"
 echo API_URL $API_URL
 echo INPUT_VERSION $INPUT_VERSION
-RELEASE_DATA=$(curl -i -H "${AUTH_HEADER}" -H "${API_HEADER}" $API_URL/releases/${INPUT_VERSION})
+RELEASE_DATA=$(curl -H "${AUTH_HEADER}" -H "${API_HEADER}" $API_URL/releases/${INPUT_VERSION})
 echo RELEASE_DATA
 echo $RELEASE_DATA
 echo INPUT_FILE $INPUT_FILE
