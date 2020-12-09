@@ -14,18 +14,18 @@ REPO=$GITHUB_REPOSITORY
 if ! [[ -z ${INPUT_REPO} ]]; then
   REPO=$INPUT_REPO ;
 fi
+echo INPUT_TOKEN $INPUT_TOKEN
 
 # Optional personal access token for external repository
 TOKEN=$GITHUB_TOKEN
 if ! [[ -z ${INPUT_TOKEN} ]]; then
   TOKEN=$INPUT_TOKEN
 fi
+echo TOKEN $TOKEN
 
 API_URL="https://$TOKEN:@api.github.com/repos/$REPO"
-echo API_URL
-echo $API_URL
-echo INPUT_VERSION
-echo $INPUT_VERSION
+echo API_URL $API_URL
+echo INPUT_VERSION $INPUT_VERSION
 RELEASE_DATA=$(curl $API_URL/releases/${INPUT_VERSION})
 echo RELEASE_DATA
 echo $RELEASE_DATA
