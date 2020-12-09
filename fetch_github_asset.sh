@@ -23,10 +23,12 @@ if ! [[ -z ${INPUT_TOKEN} ]]; then
 fi
 echo TOKEN $TOKEN
 
-API_URL="https://$TOKEN:@api.github.com/repos/$REPO"
+API_HEADER="Accept: application/vnd.github.v3+json"
+AUTH_HEADER="Authorization: token $TOKEN"
+API_URL="https://api.github.com/repos/$REPO"
 echo API_URL $API_URL
 echo INPUT_VERSION $INPUT_VERSION
-RELEASE_DATA=$(curl -i $API_URL/releases/${INPUT_VERSION})
+RELEASE_DATA=$(curl -i -H "${AUTH_HEADER}" -H "${API_HEADER}" $API_URL/releases/${INPUT_VERSION})
 echo RELEASE_DATA
 echo $RELEASE_DATA
 ASSET_ID=$(echo $RELEASE_DATA | jq -r ".assets | map(select(.name == \"${INPUT_FILE}\"))[0].id")
