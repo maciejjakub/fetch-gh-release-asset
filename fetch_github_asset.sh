@@ -31,8 +31,12 @@ echo INPUT_VERSION $INPUT_VERSION
 RELEASE_DATA=$(curl -i -H "${AUTH_HEADER}" -H "${API_HEADER}" $API_URL/releases/${INPUT_VERSION})
 echo RELEASE_DATA
 echo $RELEASE_DATA
+echo INPUT_FILE $INPUT_FILE
 ASSET_ID=$(echo $RELEASE_DATA | jq -r ".assets | map(select(.name == \"${INPUT_FILE}\"))[0].id")
 TAG_VERSION=$(echo $RELEASE_DATA | jq -r ".tag_name" | sed -e "s/^v//" | sed -e "s/^v.//")
+
+echo ASSET_ID $ASSET_ID
+echo TAG_VERSION $TAG_VERSION
 
 if [[ -z "$ASSET_ID" ]]; then
   echo "Could not find asset id"
