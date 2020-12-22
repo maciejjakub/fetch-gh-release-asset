@@ -47,6 +47,7 @@ curl \
   -J \
   -L \
   -H "Accept: application/octet-stream" \
+  -H "${AUTH_HEADER}"
   "$API_URL/releases/assets/$ASSET_ID" \
   -o ${INPUT_FILE}
 
